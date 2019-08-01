@@ -1,5 +1,6 @@
 pipeline {
 	agent any
+	
 	triggers {
 	//Query repository weekdays every four hours starting at minute 0
 	        git changelog: false, credentialsId: 'c80a64a5-d56e-46d6-858b-ac8c16801ae4', url: 'https://github.com/alamscode/nginx-sample'
