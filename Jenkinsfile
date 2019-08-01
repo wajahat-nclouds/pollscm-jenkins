@@ -9,7 +9,7 @@ pipeline {
 	stages {
 		stage ('build') {
 		steps {	  
-                sh 'echo "A one line step one"'
+                sh 'echo "Hello!"'
             }
 		}
 		stage ('test: integration-&-quality') {
