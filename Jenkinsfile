@@ -1,4 +1,5 @@
 pipeline {
+	
 	agent any
 	
 	triggers {
@@ -8,7 +9,7 @@ pipeline {
 	stages {
 		stage ('build') {
 		steps {	  
-                sh 'echo "A one line step"'
+                sh 'echo "A one line step one"'
             }
 		}
 		stage ('test: integration-&-quality') {
