@@ -1,4 +1,5 @@
 pipeline {
+	
 	agent any
 	triggers {
 	//Query repository weekdays every four hours starting at minute 0
