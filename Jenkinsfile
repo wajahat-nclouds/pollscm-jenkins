@@ -34,7 +34,7 @@ pipeline {
 		}
 		stage ('deploy:prod') {
 		steps {	  
-                sh 'echo "Stage 6 done"'
+                sh 'echo "Stage 6 done!!"'
             }
 		}
 	}
