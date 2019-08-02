@@ -1,14 +1,13 @@
-String cron_string = BRANCH_NAME == "master" ? "* * * * *" : ""
-
 pipeline {
+	git changelog: true, poll: true, url: 'https://url.to.repo', branch: master
 	
 	agent any
-        triggers { pollSCM(cron_string) }
+        triggers { pollSCM('* * * * *') }
             
 	stages {
 		stage ('build') {
 		steps {	  
-                sh 'echo "Hello!!"'
+                sh 'echo "Hello!"'
             }
 		}
 		stage ('test: integration-&-quality') {
@@ -33,7 +32,7 @@ pipeline {
 		}
 		stage ('deploy:prod') {
 		steps {	  
-                sh 'echo "Stage 6 done!!!"'
+                sh 'echo "Stage 6 done!!"'
             }
 		}
 	}
