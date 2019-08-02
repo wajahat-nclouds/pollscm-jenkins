@@ -29,7 +29,7 @@ pipeline {
 		}
 		stage ('approval') {
 		steps {	  
-                sh 'echo "A one line step"'
+                sh 'echo "Stage 5 done"'
             }
 		}
 		stage ('deploy:prod') {
