@@ -3,7 +3,7 @@ String cron_string = BRANCH_NAME == "master" ? "* * * * *" : ""
 pipeline {
 	
 	agent any
-        triggers { cron(cron_string) }
+        triggers { pollSCM(cron_string) }
             
 	stages {
 		stage ('build') {
