@@ -4,7 +4,7 @@ pipeline {
 	git changelog: true, poll: true, url: 'https://url.to.repo', branch: master
 	
 	agent any
-        triggers { '* * * * *' }
+        triggers { pollSCM('* * * * *') }
             
 	stages {
 		stage ('build') {
