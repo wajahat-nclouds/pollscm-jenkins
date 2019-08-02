@@ -1,10 +1,12 @@
+String cron_string = BRANCH_NAME == "master" ? "@hourly" : ""
+
 pipeline {
 	
 	agent any
 	
 	triggers {
 	//Query repository weekdays every four hours starting at minute 0
-            pollSCM('* * * * *')
+            triggers { cron(cron_string) }
             }
 	stages {
 		stage ('build') {
