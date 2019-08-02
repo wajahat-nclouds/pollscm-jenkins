@@ -1,5 +1,3 @@
-String cron_string = BRANCH_NAME == "master" ? "* * * * *" : ""
-
 pipeline {
 	git changelog: true, poll: true, url: 'https://url.to.repo', branch: master
 	
