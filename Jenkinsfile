@@ -1,8 +1,10 @@
+String cron_string = BRANCH_NAME == "master" ? "* * * * *" : "@yearly"
+
 pipeline {
-	git changelog: true, poll: true, url: 'https://url.to.repo', branch: master
+	
 	
 	agent any
-        triggers { pollSCM('* * * * *') }
+        triggers { pollSCM(cron_string) }
             
 	stages {
 		stage ('build') {
