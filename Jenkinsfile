@@ -3,11 +3,8 @@ String cron_string = BRANCH_NAME == "master" ? "@hourly" : ""
 pipeline {
 	
 	agent any
-	
-	triggers {
-	//Query repository weekdays every four hours starting at minute 0
-            triggers { cron(cron_string) }
-            }
+        triggers { cron(cron_string) }
+            
 	stages {
 		stage ('build') {
 		steps {	  
