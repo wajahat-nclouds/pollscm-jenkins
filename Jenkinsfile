@@ -8,7 +8,7 @@ pipeline {
 	stages {
 		stage ('build') {
 		steps {	  
-                sh 'echo "Hello!"'
+                sh 'echo "Hello!!"'
             }
 		}
 		stage ('test: integration-&-quality') {
