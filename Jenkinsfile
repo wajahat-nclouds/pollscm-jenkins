@@ -14,7 +14,7 @@ pipeline {
 		}
 		stage ('test: integration-&-quality') {
 		steps {	  
-                sh 'echo "A one line step"'
+                sh 'echo "Stage 2 done"'
             }
 		}
 		stage ('test: functional') {
