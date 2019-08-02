@@ -24,7 +24,7 @@ pipeline {
 		}
 		stage ('test: load-&-security') {
 		steps {	  
-                sh 'echo "A one line step"'
+                sh 'echo "Stage 4 done"'
             }
 		}
 		stage ('approval') {
