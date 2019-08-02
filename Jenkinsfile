@@ -19,7 +19,7 @@ pipeline {
 		}
 		stage ('test: functional') {
 		steps {	  
-                sh 'echo "A one line step"'
+                sh 'echo "Stage 3 done"'
             }
 		}
 		stage ('test: load-&-security') {
