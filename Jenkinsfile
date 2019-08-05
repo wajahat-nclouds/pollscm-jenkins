@@ -25,12 +25,7 @@ pipeline {
 
 		stage('Checkout') {
 		    steps {
-			    script {
-				echo "Hello"    
-				//echo "$cause"
-				echo "$isStartedByUser"    
-				    echo "world"
-			    }
+			    sh 'echo "$isStartedByUser"'
 			  }
         }
     
