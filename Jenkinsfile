@@ -4,6 +4,7 @@ pipeline {
 	
 	
 	agent any
+	properties([disableConcurrentBuilds()])
         triggers { pollSCM(cron_string) }
             
 	stages {
