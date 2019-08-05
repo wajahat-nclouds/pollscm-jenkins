@@ -12,41 +12,27 @@ pipeline {
 	
 	
 	agent any
-	options {
-    		disableConcurrentBuilds()
-		}
+	options {disableConcurrentBuilds()}
 	triggers { pollSCM(cron_string) }
             
 	stages {
-		
 		stage('Checkout') {
-		steps {
-		sh 'echo "Hello"'
-		    }
-		}
-		}
+		steps {sh 'echo "Hello"'}}}
 		
 	
 		stage ('build') {
-		when {
-           	expression { params.GIT_REV == "" }
-        	}
+		when { expression { params.GIT_REV == "" }}
 		steps {	  
                 sh 'echo "Hello World!!"'
-		sh 'sleep 100'
+		        sh 'sleep 30'
             }
 		}
 	
 	
 		stage ('test') {
-		when {
-            	      not{
-           		  allOf {
+		when { not { allOf {
                 		expression { params.GIT_REV != "" }
-                		expression { params.OPTION == "deploy"}
-            			}
-            		 }
-        	     }
+                		expression { params.OPTION == "deploy"}}}}
 		steps {	  
                 sh 'echo "Stage 2 done"'
             }
@@ -54,13 +40,10 @@ pipeline {
 	
 	
 		stage ('push') {
-		when {
-            	     allOf {
-                           expression { params.GIT_REV == ""}
+		when { allOf { expression { params.GIT_REV == ""}
                      anyOf{
                            expression { params.OPTION  == "deploy" }
-                           expression { params.OPTION == "build" }
-                }
+                           expression { params.OPTION == "build" }}
             }
         }
 			
@@ -71,7 +54,6 @@ pipeline {
 	
 	
 		stage ('deploy') {
-		
 		when {
                 expression { params.OPTION == "deploy" }
         	}	
@@ -79,15 +61,4 @@ pipeline {
                 sh 'echo "Stage 4 done"'
             }
 		}
-		stage ('approval') {
-		steps {	  
-                sh 'echo "Stage 5 done"'
-            }
-		}
-		stage ('deploy:prod') {
-		steps {	  
-                sh 'echo "Stage 6 done!!!"'
-            }
-		}
 	}
-}
