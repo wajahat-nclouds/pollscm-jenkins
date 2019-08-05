@@ -18,7 +18,9 @@ pipeline {
             
 	stages {
 		stage('Checkout') {
-		steps {sh 'echo "Hello"'}}}
+		    steps {sh 'echo "Hello"'}
+        }
+    
 		
 	
 		stage ('build') {
@@ -33,7 +35,10 @@ pipeline {
 		stage ('test') {
 		when { not { allOf {
                 		expression { params.GIT_REV != "" }
-                		expression { params.OPTION == "deploy"}}}}
+                		expression { params.OPTION == "deploy"}
+                        }
+                        }
+                        }
 		steps {	  
                 sh 'echo "Stage 2 done"'
             }
