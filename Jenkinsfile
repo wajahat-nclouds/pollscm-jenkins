@@ -1,4 +1,4 @@
-String cron_string = BRANCH_NAME == "master" ? "* * * * *" : ""
+String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
 
 pipeline {
 	
