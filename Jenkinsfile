@@ -10,6 +10,7 @@ pipeline {
 		stage ('build') {
 		steps {	  
                 sh 'echo "Hello World!!"'
+		sh 'sleep 120'
             }
 		}
 		stage ('test: integration-&-quality') {
