@@ -3,7 +3,6 @@ String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
 
 pipeline {
 	
-	
 	parameters {
         string(name: 'GIT_REV', defaultValue: '', description: 'The git commit you want to build')
         string(name: 'EKS_CLUSTER', defaultValue: 'qa_nclouds', description: 'The name of the eks cluster')
@@ -18,11 +17,9 @@ pipeline {
             
 	stages {
 		stage('Checkout') {
-		    steps {sh 'echo "Hello!"'}
+		    steps {sh 'echo "Hello"'}
         }
     
-		
-	
 		stage ('build') {
 		when { expression { params.GIT_REV == "" }}
 		steps {	  
@@ -34,11 +31,11 @@ pipeline {
 	
 		stage ('test') {
 		when { not { allOf {
-                		expression { params.GIT_REV != "" }
-                		expression { params.OPTION == "deploy"}
+                		        expression { params.GIT_REV != "" }
+                		        expression { params.OPTION == "deploy"}
                         }
-                        }
-                        }
+                    }
+            }
 		steps {	  
                 sh 'echo "Stage 2 done"'
             }
@@ -67,4 +64,6 @@ pipeline {
                 sh 'echo "Stage 4 done"'
             }
 		}
-	}}}
+	}
+}
+}
