@@ -2,20 +2,6 @@
 
 // def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
 
-def isStartedByTimer() {
-    def buildCauses = currentBuild.rawBuild.getCauses()
-    echo buildCauses
-
-    boolean isStartedByTimer = false
-    for (buildCause in buildCauses) {
-        if ("${buildCause}".contains("hudson.triggers.TimerTrigger\$TimerTriggerCause")) {
-            isStartedByTimer = true
-        }
-    }
-
-    echo isStartedByTimer
-    return isStartedByTimer
-}
 
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
 
@@ -41,7 +27,7 @@ pipeline {
 		    steps {
 			    script {
 				    echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
-				    echo "${isStartedByTimer()}"
+				    echo "${currentBuild.getBuildCauses('hudson.model.triggers.TimerTrigger$TimerTriggerCause')}"
 			    }}
         }
     
