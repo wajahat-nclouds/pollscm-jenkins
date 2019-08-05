@@ -2,25 +2,10 @@ def cause = currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTrigg
 
 def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
 
-import com.cloudbees.groovy.cps.NonCPS
 
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
 
-@NonCPS
-def isStartedByTimer() {
-    def buildCauses = currentBuild.rawBuild.getCauses()
-    echo buildCauses
 
-    boolean isStartedByTimer = false
-    for (buildCause in buildCauses) {
-        if ("${buildCause}".contains("hudson.triggers.TimerTrigger\$TimerTriggerCause")) {
-            isStartedByTimer = true
-        }
-    }
-
-    echo isStartedByTimer
-    return isStartedByTimer
-}
 
 pipeline {
 	agent any
