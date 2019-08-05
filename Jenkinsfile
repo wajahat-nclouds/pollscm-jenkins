@@ -27,6 +27,7 @@ pipeline {
 		    steps {
 			    script {
 				    echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
+				    echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
 			    }}
         }
     
