@@ -17,13 +17,13 @@ pipeline {
             
 	stages {
 		stage('Checkout') {
-		    steps {sh 'echo "Hello"'}
+		    steps {sh 'echo "Stage Checkout done"'}
         }
     
 		stage ('build') {
 		when { expression { params.GIT_REV == "" }}
 		steps {	  
-                sh 'echo "Hello World!!"'
+                sh 'echo "Stage build done"'
 		        sh 'sleep 30'
             }
 		}
@@ -37,7 +37,7 @@ pipeline {
                     }
             }
 		steps {	  
-                sh 'echo "Stage 2 done"'
+                sh 'echo "Stage test done"'
             }
 		}
 	
@@ -51,7 +51,7 @@ pipeline {
         }
 			
 		steps {	  
-                sh 'echo "Stage 3 done"'
+                sh 'echo "Stage push done"'
             }
 		}
 	
@@ -61,7 +61,7 @@ pipeline {
                 expression { params.OPTION == "deploy" }
         	}	
 		steps {	  
-                sh 'echo "Stage 4 done"'
+                sh 'echo "Stage deploy done"'
             }
 		}
 	}
