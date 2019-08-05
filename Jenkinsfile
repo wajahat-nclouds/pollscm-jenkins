@@ -13,7 +13,7 @@ pipeline {
 		stage ('build') {
 		steps {	  
                 sh 'echo "Hello World!!"'
-		sh 'sleep 10'
+		sh 'sleep 100'
             }
 		}
 		stage ('test: integration-&-quality') {
