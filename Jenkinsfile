@@ -1,4 +1,4 @@
-
+def cause = currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')
 
 // def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
@@ -21,8 +21,10 @@ pipeline {
 
 		stage('Checkout') {
 		    steps {
+			    
                 script {
 			    sh 'echo "Stage Checkout done"'
+			    sh 'echo $cause'
 			    sh 'echo "BUILD_CAUSE_JSON=$(curl --silent ${BUILD_URL}/api/json | tr "{}" "\n" | grep "Started by")"'
                 sh 'echo "BUILD_USER_ID=$(echo $BUILD_CAUSE_JSON | tr "," "\n" | grep "userId" | awk -F\" '{print $4}')"'
                 sh 'echo "BUILD_USER_NAME=$(echo $BUILD_CAUSE_JSON | tr "," "\n" | grep "userName" | awk -F\" '{print $4}')"'
