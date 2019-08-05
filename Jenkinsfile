@@ -25,8 +25,9 @@ pipeline {
 
 		stage('Checkout') {
 		    steps {
-			    sh 'echo "$(currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause'))"'
-			  }
+			    script {
+			    echo "$(currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause'))"
+			    }}
         }
     
 		stage ('build') {
