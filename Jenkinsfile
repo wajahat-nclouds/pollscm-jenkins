@@ -24,7 +24,6 @@ pipeline {
 		when { expression { params.GIT_REV == "" }}
 		steps {	  
                 sh 'echo "Stage build done"'
-		        sh 'sleep 30'
             }
 		}
 	
