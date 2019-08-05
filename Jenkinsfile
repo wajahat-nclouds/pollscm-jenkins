@@ -1,6 +1,34 @@
+def call(body) {
+    if (body == null) {body = {DEBUG = false}}
+    def myParams= [:]
+    body.resolveStrategy = Closure.DELEGATE_FIRST
+    body.delegate = myParams
+    body()
 
+    def causes = currentBuild.getBuildCauses()
+    if (myParams.DEBUG) { 
+        echo "causes count: " + causes.size().toString()
+        echo "causes text : " + causes.toString()
+    }
+    for(cause in causes) {
+        // echo cause
+        if (cause._class.toString().contains("UpstreamCause")) {
+            return "JOB/" + cause.upstreamProject
+        } else {
+            return cause.toString()
+        }
+    }
+}
 
-//def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+def cause=buildCause()
+echo cause
+if (!cause.contains('JOB/')) {
+    echo "started by user"
+} else {
+    echo "triggered by job"
+}
+
+// def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
 
 pipeline {
@@ -18,31 +46,10 @@ pipeline {
 	triggers { pollSCM(cron_string) }
             
 	stages {
-		
-		
-		stage('find upstream job') {
-            steps {
-                script {
-                    def causes = currentBuild.rawBuild.getCauses()
-                    for(cause in causes) {
-                        if (cause.class.toString().contains("UpstreamCause")) {
-                            println "This job was caused by job " + cause.upstreamProject
-                        } else {
-                            println "Root cause : " + cause.toString()
-                        }
-                    }
-                }      
-            }
-        }
-		
-		
-		
-		
+
 		stage('Checkout') {
 		    steps {
 			    sh 'echo "Stage Checkout done"'
-			    sh 'echo $isStartedByUser'
-			    
 			  }
         }
     
