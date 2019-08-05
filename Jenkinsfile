@@ -1,8 +1,8 @@
-def call(Map pipelineParams) {
+
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
 
 pipeline {
-	
+	agent any
 	parameters {
         string(name: 'GIT_REV', defaultValue: '', description: 'The git commit you want to build')
         string(name: 'EKS_CLUSTER', defaultValue: 'qa_nclouds', description: 'The name of the eks cluster')
@@ -11,7 +11,7 @@ pipeline {
     }
 	
 	
-	agent any
+	
 	options {disableConcurrentBuilds()}
 	triggers { pollSCM(cron_string) }
             
@@ -66,4 +66,4 @@ pipeline {
 		}
 	}
 }
-}
+
