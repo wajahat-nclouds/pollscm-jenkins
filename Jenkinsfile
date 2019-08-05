@@ -1,4 +1,4 @@
-def getCauses() {
+List getCauses() {
 
     return currentBuild.rawBuild.getCauses().collect { it.getClass().getCanonicalName().tokenize('.').last() }
 
