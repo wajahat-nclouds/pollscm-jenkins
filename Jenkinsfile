@@ -21,7 +21,7 @@ pipeline {
 		stage('Checkout') {
 		    steps {
 			    sh 'echo "Stage Checkout done"'
-			    sh 'echo $CAUSE'
+			    sh 'echo isStartedByUser'
 			  }
         }
     
