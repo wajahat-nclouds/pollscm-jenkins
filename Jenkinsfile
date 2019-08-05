@@ -1,4 +1,10 @@
+def getCauses() {
 
+    return currentBuild.rawBuild.getCauses().collect { it.getClass().getCanonicalName().tokenize('.').last() }
+
+}
+
+// def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
 
 pipeline {
@@ -17,7 +23,10 @@ pipeline {
             
 	stages {
 		stage('Checkout') {
-		    steps {sh 'echo "Stage Checkout done"'}
+		    steps {
+			    sh 'echo "Stage Checkout done"'
+			    sh 'echo "getCauses()"'
+			  }
         }
     
 		stage ('build') {
