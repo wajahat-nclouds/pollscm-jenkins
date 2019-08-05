@@ -1,3 +1,4 @@
+def call(Map pipelineParams) {
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
 
 pipeline {
@@ -61,4 +62,4 @@ pipeline {
                 sh 'echo "Stage 4 done"'
             }
 		}
-	}
+	}}
