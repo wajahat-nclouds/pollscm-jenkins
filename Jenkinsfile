@@ -1,7 +1,26 @@
 //def cause = currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')
 
-def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+//def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+
+import com.cloudbees.groovy.cps.NonCPS
+
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
+
+@NonCPS
+def isStartedByTimer() {
+    def buildCauses = currentBuild.rawBuild.getCauses()
+    echo buildCauses
+
+    boolean isStartedByTimer = false
+    for (buildCause in buildCauses) {
+        if ("${buildCause}".contains("hudson.triggers.TimerTrigger\$TimerTriggerCause")) {
+            isStartedByTimer = true
+        }
+    }
+
+    echo isStartedByTimer
+    return isStartedByTimer
+}
 
 pipeline {
 	agent any
@@ -21,15 +40,11 @@ pipeline {
 
 		stage('Checkout') {
 		    steps {
-			    
-                script {
-			    sh 'echo "Stage Checkout done"'
-			    sh 'echo $cause'
-			    sh 'echo $isStartedByUser'
-			    sh 'echo "BUILD_CAUSE_JSON=$(curl --silent ${BUILD_URL}/api/json | tr "{}" "\n" | grep "Started by")"'
-                sh 'echo "BUILD_USER_ID=$(echo $BUILD_CAUSE_JSON | tr "," "\n" | grep "userId" | awk -F\" '{print $4}')"'
-                sh 'echo "BUILD_USER_NAME=$(echo $BUILD_CAUSE_JSON | tr "," "\n" | grep "userName" | awk -F\" '{print $4}')"'
-                }
+			    script {
+				echo "Hello"    
+				isStartedByTimer()
+				    echo "world"
+			    }
 			  }
         }
     
