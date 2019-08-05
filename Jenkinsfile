@@ -26,7 +26,7 @@ pipeline {
                			 sh 'echo "BUILD_USER_ID=$(echo $BUILD_CAUSE_JSON | tr "," "\n" | grep "userId" | awk -F\" '{print $4}')"'
                			 sh 'echo "BUILD_USER_NAME=$(echo $BUILD_CAUSE_JSON | tr "," "\n" | grep "userName" | awk -F\" '{print $4}')"'
 			  }
-        }
+				}
     
 		stage ('build') {
 		when { expression { params.GIT_REV == "" }}
