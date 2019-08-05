@@ -25,14 +25,14 @@ pipeline {
 		stage('Checkout') {
 		    steps {
 			    sh 'echo "Stage Checkout done"'
-			    sh 'echo "getCauses()"'
+			    sh 'echo getCauses()'
 			  }
         }
     
 		stage ('build') {
 		when { expression { params.GIT_REV == "" }}
 		steps {	  
-                sh 'error("Build failed because of this and that..")'
+                sh 'echo "Stage build done"'
             }
 		}
 	
