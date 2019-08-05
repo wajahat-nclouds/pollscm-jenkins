@@ -23,7 +23,7 @@ pipeline {
 		stage ('build') {
 		when { expression { params.GIT_REV == "" }}
 		steps {	  
-                sh 'echo "Stage build done"'
+                sh 'error("Build failed because of this and that..")'
             }
 		}
 	
