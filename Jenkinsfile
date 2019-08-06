@@ -4,7 +4,7 @@
 
 def isStartedByTimer() {
     def buildCauses = currentBuild.getBuildCauses()
-    echo buildCauses
+    
 
     boolean isStartedByTimer = false
     for (buildCause in buildCauses) {
