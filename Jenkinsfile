@@ -8,7 +8,7 @@ def isStartedByTimer() {
 
     boolean isStartedByTimer = false
     for (buildCause in buildCauses) {
-        if ("${buildCause}".contains("hudson.triggers.TimerTrigger$TimerTriggerCause")) {
+        if ("${buildCause}".contains("hudson.triggers.SCMTrigger$SCMTriggerCause")) {
             isStartedByTimer = true
         }
     }
