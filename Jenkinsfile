@@ -129,10 +129,15 @@ pipeline {
 			steps {
 				sh 'echo "Stage deploy done"'
 			}
+
 			post {
 				success {
 					echo "post deploy: success"
 				}
+			}
+			
 		}
+
+		
 	}
 }
