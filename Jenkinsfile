@@ -56,7 +56,10 @@ pipeline {
 	
 	
 		stage ('test') {
-		when { not { allOf {
+		when anyOf{
+			"${isStartedByTimer}" = true
+                { not {
+                 allOf {
                 		        expression { params.GIT_REV != "" }
                 		        expression { params.OPTION == "deploy"}
                         }
