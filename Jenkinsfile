@@ -58,7 +58,7 @@ pipeline {
 	
 		stage ('test') {
                 when {anyOf
-                    "${scm}" == true
+                    expression { "${scm}" == "true" }
                         { not {
                     allOf {
                                     expression { params.GIT_REV != "" }
