@@ -1,6 +1,6 @@
 //def cause = currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')
 
-// def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) 
+// def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
 
 def isStartedByTimer() {
     def buildCauses = currentBuild.getBuildCauses()
