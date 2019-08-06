@@ -57,15 +57,8 @@ pipeline {
 	
 	
 		stage ('test') {
-                when { anyOf
+                when { 
                     expression { "${scm}" == "true" }
-                        { not {
-                    allOf {
-                                    expression { params.GIT_REV != "" }
-                                    expression { params.OPTION == "deploy"}
-                            }
-                        }
-                }
             }
 		steps {	  
                 sh 'echo "Stage test done"'
