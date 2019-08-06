@@ -57,7 +57,7 @@ pipeline {
 	
 	
 		stage ('test') {
-                when {anyOf
+                when { anyOf
                     expression { "${scm}" == "true" }
                         { not {
                     allOf {
