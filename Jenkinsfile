@@ -41,10 +41,11 @@ pipeline {
 		stage('Checkout') {
 		    steps {
 			    script {
+				    echo "Hello Wordld"
 				    echo "${isStartedByTimer()}"
-				    echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
-				    echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
-				    echo "${currentBuild.getBuildCauses('hudson.triggers.SCMTrigger$SCMTriggerCause')}"
+				    //echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
+				    //echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
+				    //echo "${currentBuild.getBuildCauses('hudson.triggers.SCMTrigger$SCMTriggerCause')}"
 			    }}
         }
     
