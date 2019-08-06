@@ -17,6 +17,7 @@ def isStartedByTimer() {
 
 
 String cron_string = BRANCH_NAME == "dev" ? "* * * * *" : ""
+def scm = "${isStartedByTimer()}"
 
 
 
@@ -40,7 +41,7 @@ pipeline {
 		    steps {
 			    script {
 				    echo "Hello Wordld"
-				    echo "${isStartedByTimer()}"
+				    echo "${scm}"
 				    //echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
 				    //echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
 				    //echo "${currentBuild.getBuildCauses('hudson.triggers.SCMTrigger$SCMTriggerCause')}"
@@ -56,8 +57,6 @@ pipeline {
 	
 	
 		stage ('test') {
-		when anyOf{
-			"${isStartedByTimer}" = true
                 { not {
                  allOf {
                 		        expression { params.GIT_REV != "" }
