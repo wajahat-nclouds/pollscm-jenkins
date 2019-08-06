@@ -57,7 +57,7 @@ pipeline {
 	
 	
 		stage ('test') {
-                { not {
+                when { not {
                  allOf {
                 		        expression { params.GIT_REV != "" }
                 		        expression { params.OPTION == "deploy"}
