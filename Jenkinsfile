@@ -79,15 +79,21 @@ pipeline {
 	
 		stage ('push') {
 		when {
-                anyOf {
-                    expression { "${scm}" == "true" }
-                    { allOf { expression { params.GIT_REV == ""}
-                     anyOf{
-                           expression { params.OPTION  == "deploy" }
-                           expression { params.OPTION == "build" }}
-            }
-                }
-        }}
+                anyOf  {
+                            expression { "${scm}" == "true" }
+                             
+                                allOf 
+                                    { 
+                                        expression { params.GIT_REV == ""
+                                    }
+                            anyOf
+                                {
+                                expression { params.OPTION  == "deploy" }
+                                expression { params.OPTION == "build" }}
+                                }
+                            
+                        }
+             }
 			
 		steps {	  
                 sh 'echo "Stage push done"'
