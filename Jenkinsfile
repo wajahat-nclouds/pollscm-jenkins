@@ -129,17 +129,10 @@ pipeline {
 			steps {
 				sh 'echo "Stage deploy done"'
 			}
-		}
-
-		stage ('integration-test'){
-			steps{
-				sh 'echo "Integration tests done"'
-			}
 			post {
 				success {
-					echo "post success"
+					echo "post deploy: success"
 				}
-			}
 		}
 	}
 }
