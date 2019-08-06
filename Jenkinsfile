@@ -128,6 +128,7 @@ pipeline {
 			}
 			steps {
 				sh 'echo "Stage deploy done"'
+				error('failed')
 			}
 
 			post {
