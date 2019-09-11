@@ -57,10 +57,10 @@ pipeline {
 				allOf {
 					not {
 						expression {
-						params.OPTION == "deploy"
+							params.OPTION == "deploy"
 					}
 					expression {
-					params.GIT_REV == ""
+						params.GIT_REV == ""
 				}
 			}
 			}
