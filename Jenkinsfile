@@ -36,6 +36,14 @@ pipeline {
 	stages {
 
 		stage('Checkout') {
+			when{
+				not {
+					expression {
+						params.OPTION == "deploy"
+					}
+				}
+			}
+			
 			steps {
 				script {
 					echo "Hello Wordld"
@@ -128,7 +136,7 @@ pipeline {
 			}
 			steps {
 				sh 'echo "Stage deploy done"'
-				error('failed')
+				// error('failed')
 			}
 
 			post {
