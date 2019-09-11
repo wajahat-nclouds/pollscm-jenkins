@@ -108,25 +108,33 @@ pipeline {
 
 		stage('push') {
 			when {
-				anyOf {
-					expression {
-						"${scm}" == "true"
-					}
-
-					allOf {
+				allOf {
+					not {
 						expression {
-							params.GIT_REV == ""
-						}
-						anyOf {
-							expression {
-								params.OPTION == "deploy"
-							}
-							expression {
-								params.OPTION == "build"
-							}
+							params.OPTION == "re-deploy"
 						}
 					}
+				
+					anyOf {
+						expression {
+							"${scm}" == "true"
+						}
 
+						allOf {
+							expression {
+								params.GIT_REV == ""
+							}
+							anyOf {
+								expression {
+									params.OPTION == "deploy"
+								}
+								expression {
+									params.OPTION == "build"
+								}
+							}
+						}
+
+					}
 				}
 			}
 
@@ -138,12 +146,20 @@ pipeline {
 
 		stage('deploy') {
 			when {
-				anyOf {
-					expression {
-						"${scm}" == "true"
+				allOf {
+					not {
+						expression {
+							params.OPTION == "re-deploy"
+						}
 					}
-					expression {
-						params.OPTION == "deploy"
+				
+					anyOf {
+						expression {
+							"${scm}" == "true"
+						}
+						expression {
+							params.OPTION == "deploy"
+						}
 					}
 				}
 
@@ -160,6 +176,17 @@ pipeline {
 				}
 			}
 			
+		}
+
+		stage('re-deploy'){
+			when {
+				expression {
+					params.OPTION == "re-deploy"
+				}
+			}
+			steps{
+				sh 'echo "Stage re-deploy done"'
+			}
 		}
 
 		
