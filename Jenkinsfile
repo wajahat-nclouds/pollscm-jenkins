@@ -22,7 +22,7 @@ pipeline {
 		string(name: 'GIT_REV', defaultValue: '', description: 'The git commit you want to build')
 		string(name: 'EKS_CLUSTER', defaultValue: 'qa_nclouds', description: 'The name of the eks cluster')
 		string(name: 'AWS_REGION', defaultValue: 'us-west-2')
-		choice(name: 'OPTION', choices: ['test', 'build', 'deploy'])
+		choice(name: 'OPTION', choices: ['test', 'build', 'deploy', 're-deploy'])
 	}
 
 
@@ -39,7 +39,7 @@ pipeline {
 			when{
 				not {
 					expression {
-						params.OPTION == "deploy"
+						params.OPTION == "re-deploy"
 					}
 				}
 			}
@@ -57,7 +57,7 @@ pipeline {
 				allOf {
 					not {
 						expression {
-							params.OPTION == "deploy"
+							params.OPTION == "re-deploy"
 						}
 					}
 					expression {
@@ -73,22 +73,30 @@ pipeline {
 
 		stage('test') {
 			when {
-				anyOf {
-					expression {
-						"${scm}" == "true"
-					}
+				allOf {
 					not {
-						allOf {
-							expression {
-								params.GIT_REV != ""
-							}
-							expression {
-								params.OPTION == "deploy"
-							}
+						expression {
+							params.OPTION == "re-deploy"
 						}
 					}
+				
+					anyOf {
+						expression {
+							"${scm}" == "true"
+						}
+						not {
+							allOf {
+								expression {
+									params.GIT_REV != ""
+								}
+								expression {
+									params.OPTION == "deploy"
+								}
+							}
+						}
 
 
+					}
 				}
 
 			}
