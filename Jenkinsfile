@@ -54,9 +54,15 @@ pipeline {
 
 		stage('build') {
 			when {
-				expression {
+				allOf {
+					not {
+						expression {
+						params.OPTION == "deploy"
+					}
+					expression {
 					params.GIT_REV == ""
 				}
+			}
 			}
 			steps {
 				sh 'echo "Stage build done"'
