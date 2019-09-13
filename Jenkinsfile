@@ -193,7 +193,7 @@ pipeline {
 							template: {
 								metadata: {
 									labels : {
-										date: "test date"
+										date: "waji date"
 									}
 								}
 							}
