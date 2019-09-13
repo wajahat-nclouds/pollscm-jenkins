@@ -200,7 +200,7 @@ pipeline {
 								]
 							}
 						]
-    ]
+    
 					def json = JsonOutput.toJson(data)
 					//if you need pretty print (multiline) json
 					json = JsonOutput.prettyPrint(json)
