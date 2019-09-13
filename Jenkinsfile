@@ -204,7 +204,12 @@ pipeline {
 							]
 						]
 					]
-					writeJSON(file: 'message1.json', json: data)
+					def json = JsonOutput.toJson(data)
+					//if you need pretty print (multiline) json
+					json = JsonOutput.prettyPrint(json)
+
+					//put string into the file:
+					writeFile(file:'message2.json', text: json)
 					sh 'cat message1.json'
 					sh 'echo "Stage re-deploy done"'
 
