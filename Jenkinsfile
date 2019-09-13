@@ -190,7 +190,7 @@ pipeline {
 				script {
 					def data = [
 						specs: [
-								{
+								[
 									template  :[
 										[
 											title: "Notes",
@@ -198,7 +198,7 @@ pipeline {
 											short: false
 										]
 									]
-								}
+								]
 							]
 						]
     
