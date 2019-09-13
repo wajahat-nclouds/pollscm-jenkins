@@ -188,21 +188,10 @@ pipeline {
 			}
 			steps{
 				script {
-					def data = [
-						specs: [
-								[
-									template  :[
-										[
-											title: "Notes",
-											value: "This is much easier than I thought it would be.",
-											short: false
-										]
-									]
-								]
-							]
-						]
-    
-					def json = JsonOutput.toJson(data)
+					def str = '{"spec":{"template":{"metadata":{"labels":{"date":"mydate"}}}}}'
+					def parser = new JsonSlurper()
+					def json = parser.parseText(str)
+					//def json = JsonOutput.toJson(data)
 					//if you need pretty print (multiline) json
 					json = JsonOutput.prettyPrint(json)
 
