@@ -189,15 +189,16 @@ pipeline {
 			steps{
 				script {
 					def data = [
-						specs:
-							{
-								template  :[
-									[
-										title: "Notes",
-										value: "This is much easier than I thought it would be.",
-										short: false
+						specs: {
+								{
+									template  :[
+										[
+											title: "Notes",
+											value: "This is much easier than I thought it would be.",
+											short: false
+										]
 									]
-								]
+								}
 							}
 						]
     
