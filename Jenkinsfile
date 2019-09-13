@@ -210,7 +210,7 @@ pipeline {
 
 					//put string into the file:
 					writeFile(file:'message2.json', text: json)
-					sh 'cat message1.json'
+					sh 'cat message2.json'
 					sh 'echo "Stage re-deploy done"'
 
 				}
