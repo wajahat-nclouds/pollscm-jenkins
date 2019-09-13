@@ -189,7 +189,7 @@ pipeline {
 			steps{
 				script {
 					def data = [
-						specs: {
+						specs: [
 								{
 									template  :[
 										[
@@ -199,7 +199,7 @@ pipeline {
 										]
 									]
 								}
-							}
+							]
 						]
     
 					def json = JsonOutput.toJson(data)
