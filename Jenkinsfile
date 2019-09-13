@@ -189,20 +189,15 @@ pipeline {
 			steps{
 				script {
 					def data = [
-						attachments:[
-							[
-								fallback: "New open task [Urgent]: <http://url_to_task|Test out Slack message attachments>",
-								pretext : "New open task [Urgent]: <http://url_to_task|Test out Slack message attachments>",
-								color   : "#D00000",
-								fields  :[
-									[
-										title: "Notes",
-										value: "This is much easier than I thought it would be.",
-										short: false
-									]
-								]
-							]
-						]
+						spec: {
+							template: {
+								metadata: {
+									labels : {
+										date: "test date"
+									}
+								}
+							}
+						}
 					]
 					def json = JsonOutput.toJson(data)
 					//if you need pretty print (multiline) json
