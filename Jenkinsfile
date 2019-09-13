@@ -192,8 +192,8 @@ pipeline {
 						spec: {
 							template: {
 								metadata: {
-									labels : {
-										date: "waji date"
+									labels: {
+										datetest: false
 									}
 								}
 							}
