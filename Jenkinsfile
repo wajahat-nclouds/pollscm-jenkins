@@ -189,16 +189,18 @@ pipeline {
 			steps{
 				script {
 					def data = [
-						spec: {
-							template: {
-								metadata: {
-									labels: {
-										datetest: false
-									}
-								}
-							}
-						}
-					]
+						specs:[
+							[
+								template  :[
+									[
+										title: "Notes",
+										value: "This is much easier than I thought it would be.",
+										short: false
+									]
+								]
+							]
+						]
+    ]
 					def json = JsonOutput.toJson(data)
 					//if you need pretty print (multiline) json
 					json = JsonOutput.prettyPrint(json)
