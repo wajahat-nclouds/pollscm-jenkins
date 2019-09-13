@@ -189,8 +189,8 @@ pipeline {
 			steps{
 				script {
 					def data = [
-						specs:[
-							[
+						specs:
+							{
 								template  :[
 									[
 										title: "Notes",
@@ -198,7 +198,7 @@ pipeline {
 										short: false
 									]
 								]
-							]
+							}
 						]
     ]
 					def json = JsonOutput.toJson(data)
