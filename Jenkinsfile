@@ -1,3 +1,5 @@
+import groovy.json.JsonOutput
+
 def isStartedByTimer() {
 	def buildCauses = currentBuild.getBuildCauses()
 
@@ -185,7 +187,29 @@ pipeline {
 				}
 			}
 			steps{
-				sh 'echo "Stage re-deploy done"'
+				script {
+					def data = [
+						attachments:[
+							[
+								fallback: "New open task [Urgent]: <http://url_to_task|Test out Slack message attachments>",
+								pretext : "New open task [Urgent]: <http://url_to_task|Test out Slack message attachments>",
+								color   : "#D00000",
+								fields  :[
+									[
+										title: "Notes",
+										value: "This is much easier than I thought it would be.",
+										short: false
+									]
+								]
+							]
+						]
+					]
+					writeJSON(file: 'message1.json', json: data)
+					sh 'cat message1.json'
+					sh 'echo "Stage re-deploy done"'
+
+				}
+				
 			}
 		}
 
