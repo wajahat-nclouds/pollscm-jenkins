@@ -192,8 +192,8 @@ pipeline {
 				script {
 					
 					String jsonString = "test hello"
-					JsonSlurper slurper = new JsonSlurper()
-					Map parsedJson = slurper.parseText(jsonString)
+					// JsonSlurper slurper = new JsonSlurper()
+					// Map parsedJson = slurper.parseText(jsonString)
 					//JSONObject jsonObjectTest = new JSONObject(json)
 					// def json = JsonOutput.toJson(parsedJson)
 					// //if you need pretty print (multiline) json
