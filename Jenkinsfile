@@ -191,16 +191,7 @@ pipeline {
 			steps{
 				script {
 					
-					String jsonString = '''{"menu": {
-					"id": "file",
-					"tools": {
-					"actions": [
-					{"id": "new", "title": "New File"},
-					{"id": "open", "title": "Open File"},
-					{"id": "close", "title": "Close File"}
-					],
-					"errors": []
-					}}}'''
+					String jsonString = "test hello"
 					JsonSlurper slurper = new JsonSlurper()
 					Map parsedJson = slurper.parseText(jsonString)
 					//JSONObject jsonObjectTest = new JSONObject(json)
