@@ -204,10 +204,10 @@ pipeline {
 					}}}'''
 					JsonSlurper slurper = new JsonSlurper()
 					Map parsedJson = slurper.parseText(jsonString)
-					JSONObject jsonObjectTest = new JSONObject(json)
-					//def json = JsonOutput.toJson(data)
+					//JSONObject jsonObjectTest = new JSONObject(json)
+					def json = JsonOutput.toJson(parsedJson)
 					//if you need pretty print (multiline) json
-					json = JsonOutput.prettyPrint(jsonObjectTest)
+					json = JsonOutput.prettyPrint(json)
 
 					//put string into the file:
 					writeFile(file:'message2.json', text: json)
