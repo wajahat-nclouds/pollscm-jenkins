@@ -1,4 +1,3 @@
-import java.util.Date
 def isStartedByTimer() {
 	def buildCauses = currentBuild.getBuildCauses()
 
@@ -187,8 +186,8 @@ pipeline {
 			}
 			steps{
 				script {
-					long secs = (new Date().getTime())/1000
-					String jsonString = """{"spec":{"template":{"metadata":{"labels":{"date":"$secs"}}}}}"""
+					print Math.random()
+					String jsonString = """{"spec":{"template":{"metadata":{"labels":{"date":"heuy"}}}}}"""
 					writeFile(file:'message2.json', text: jsonString)
 					sh 'cat message2.json'
 				    sh 'echo "Stage re-deploy done"'
