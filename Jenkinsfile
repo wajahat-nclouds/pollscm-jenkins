@@ -186,8 +186,8 @@ pipeline {
 			}
 			steps{
 				script {
-					echo "TimeStamp: ${currentBuild.startTimeInMillis}"
-					String jsonString = """{"spec":{"template":{"metadata":{"labels":{"date":"heuy"}}}}}"""
+					 
+					String jsonString = """{"spec":{"template":{"metadata":{"labels":{"date":"${currentBuild.startTimeInMillis}"}}}}}"""
 					writeFile(file:'message2.json', text: jsonString)
 					sh 'cat message2.json'
 				    sh 'echo "Stage re-deploy done"'
