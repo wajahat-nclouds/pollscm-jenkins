@@ -1,7 +1,4 @@
-import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
-
-
+import java.util.Date
 def isStartedByTimer() {
 	def buildCauses = currentBuild.getBuildCauses()
 
@@ -190,16 +187,8 @@ pipeline {
 			}
 			steps{
 				script {
-					
-					String jsonString = """{"spec":{"template":{"metadata":{"labels":{"date":"mydate"}}}}}"""
-					// JsonSlurper slurper = new JsonSlurper()
-					// Map parsedJson = slurper.parseText(jsonString)
-					//JSONObject jsonObjectTest = new JSONObject(json)
-					// def json = JsonOutput.toJson(parsedJson)
-					// //if you need pretty print (multiline) json
-					// json = JsonOutput.prettyPrint(json)
-
-					// //put string into the file:
+					long secs = (new Date().getTime())/1000
+					String jsonString = """{"spec":{"template":{"metadata":{"labels":{"date":"$secs"}}}}}"""
 					writeFile(file:'message2.json', text: jsonString)
 					sh 'cat message2.json'
 				    sh 'echo "Stage re-deploy done"'
