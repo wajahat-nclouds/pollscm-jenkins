@@ -1,6 +1,8 @@
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 
+import org.json.simple.JSONObject
+
 def isStartedByTimer() {
 	def buildCauses = currentBuild.getBuildCauses()
 
@@ -189,12 +191,23 @@ pipeline {
 			}
 			steps{
 				script {
-					def str = '{"spec":{"template":{"metadata":{"labels":{"date":"mydate"}}}}}'
-					def parser = new JsonSlurper()
-					def json = parser.parseText(str)
+					
+					String jsonString = '''{"menu": {
+					"id": "file",
+					"tools": {
+					"actions": [
+					{"id": "new", "title": "New File"},
+					{"id": "open", "title": "Open File"},
+					{"id": "close", "title": "Close File"}
+					],
+					"errors": []
+					}}}'''
+					JsonSlurper slurper = new JsonSlurper()
+					Map parsedJson = slurper.parseText(jsonString)
+					JSONObject jsonObjectTest = new JSONObject(json)
 					//def json = JsonOutput.toJson(data)
 					//if you need pretty print (multiline) json
-					json = JsonOutput.prettyPrint(json)
+					json = JsonOutput.prettyPrint(jsonObjectTest)
 
 					//put string into the file:
 					writeFile(file:'message2.json', text: json)
