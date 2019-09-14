@@ -186,7 +186,7 @@ pipeline {
 			}
 			steps{
 				script {
-					print Math.random()
+					echo "TimeStamp: ${currentBuild.startTimeInMillis}"
 					String jsonString = """{"spec":{"template":{"metadata":{"labels":{"date":"heuy"}}}}}"""
 					writeFile(file:'message2.json', text: jsonString)
 					sh 'cat message2.json'
