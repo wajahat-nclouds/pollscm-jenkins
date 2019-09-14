@@ -191,7 +191,7 @@ pipeline {
 			steps{
 				script {
 					
-					String jsonString = "test hello"
+					String jsonString = """{"spec":{"template":{"metadata":{"labels":{"date":"mydate"}}}}}"""
 					// JsonSlurper slurper = new JsonSlurper()
 					// Map parsedJson = slurper.parseText(jsonString)
 					//JSONObject jsonObjectTest = new JSONObject(json)
