@@ -1,7 +1,6 @@
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 
-import org.json.simple.JSONObject
 
 def isStartedByTimer() {
 	def buildCauses = currentBuild.getBuildCauses()
