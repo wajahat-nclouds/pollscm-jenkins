@@ -209,9 +209,9 @@ pipeline {
 					// json = JsonOutput.prettyPrint(json)
 
 					// //put string into the file:
-					// writeFile(file:'message2.json', text: json)
-					// sh 'cat message2.json'
-					// sh 'echo "Stage re-deploy done"'
+					writeFile(file:'message2.json', text: jsonString)
+					sh 'cat message2.json'
+				    sh 'echo "Stage re-deploy done"'
 
 				}
 				
