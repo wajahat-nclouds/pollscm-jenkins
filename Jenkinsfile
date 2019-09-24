@@ -1,2 +1,2 @@
 @Library('shared-library-jenkins')_
-sharedPipeline()
+sharedPipeline(OPTION:'re-deploy')
